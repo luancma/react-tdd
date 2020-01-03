@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/* eslint-disable no-unused-expressions */
+import React, { useState } from "react";
 
 function App() {
+  const [techs, setTechs] = useState([]);
+  const [newTech, setNewTech] = useState("");
+
+  function handleAddTechs() {
+    setTechs([...techs, newTech]);
+    setNewTech("");
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form data-testid="tech-form" onSubmit={handleAddTechs}>
+      <ul data-testid="tech-list">
+        {techs.map(tech => (
+          <li key={tech}>{tech}</li>
+        ))}
+      </ul>
+
+      <label htmlFor="tech">Tech</label>
+      <input
+        type="text"
+        id="tech"
+        value={newTech}
+        onChange={e => setNewTech(e.target.value)}
+      />
+      <button type="button" onClick={handleAddTechs}>
+        Adicionar
+      </button>
+    </form>
   );
 }
 

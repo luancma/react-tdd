@@ -4,8 +4,9 @@ import App from "../App";
 
 describe("App component", () => {
   it("Deve retornar um form", () => {
-    const { getByText, getByTestId, debug, getByLabelText } = render(<App />);
+    const { getByText, getByTestId, getByLabelText } = render(<App />);
 
+    
     fireEvent.change(getByLabelText("Tech"), { target: { value: "Node.js" } });
 
     fireEvent.submit(getByTestId("tech-form"));
